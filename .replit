@@ -31,21 +31,3 @@ externalPort = 80
 
 [workflows]
 runButton = "Deploy (Main)"
-
-[[workflows.workflow]]
-name = "Deploy (Main)"
-mode = "sequential"
-author = 38722240
-
-[[workflows.workflow.tasks]]
-task = "shell.exec"
-args = "firebase deploy"
-
-[[workflows.workflow]]
-name = "Preview"
-mode = "sequential"
-author = 38722240
-
-[[workflows.workflow.tasks]]
-task = "shell.exec"
-args = "http-server"
