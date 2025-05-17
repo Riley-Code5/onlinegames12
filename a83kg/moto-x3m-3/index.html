@@ -1,0 +1,206 @@
+<html lang="tr"><head><base target="_blank">
+
+
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Moto X3M</title>
+  <style>
+    .play-button {
+      display: inline-block;
+      padding: 20px 40px;
+      background-color: #000000;
+      color: #ffffff !important;
+      border: 2px solid #4a148c;
+      border-radius: 10px;
+      font-family: Arial, sans-serif;
+      font-size: 24px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      text-decoration: none !important;
+      transform: translate(-50%, -50%);
+      z-index: 1001; /* Butonun oyun üzerinde olmasını sağla */
+    }
+
+    .play-button:hover {
+      background-color: #4a148c !important;
+      transform: translate(-50%, -50%) scale(1.05);
+    }
+
+    .fullscreen-button {
+      display: inline-block;
+      padding: 10px 15px;
+      background-color: #000000;
+      color: #ffffff !important;
+      border: 2px solid #4a148c;
+      border-radius: 5px;
+      font-family: Arial, sans-serif;
+      font-size: 14px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      text-decoration: none !important;
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      z-index: 1002; /* Fullscreen butonu her zaman en üstte */
+    }
+
+    .fullscreen-button:hover {
+      background-color: #4a148c !important;
+      transform: scale(1.05);
+    }
+
+    .content-container {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      margin: 0;
+      padding: 0;
+      border: none;
+      overflow: hidden;
+      z-index: 1000; /* Oyun iframe'i fullscreen butonunun altında */
+      background-color: #000;
+    }
+
+    body, html {
+      margin: 0;
+      padding: 0;
+      overflow: hidden;
+      height: 100%;
+    }
+  </style>
+</head>
+<body>
+  <a id="playButton" class="play-button" style="display: none;">CLICK TO PLAY</a>
+  <a id="fullscreenButton" class="fullscreen-button">Play</a>
+  <div id="contentContainer" class="content-container" style="display: block;"><iframe src="blob:https://1278942826-atari-embeds.googleusercontent.com/ee25e4f8-06c8-49e3-b616-509bc53baa7e" style="width: 100%; height: 100%; border: medium; margin: 0px; padding: 0px;"></iframe></div>
+
+  <script>
+    // Oyun HTML'si
+    const gameHTML = `
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta http-equiv="x-ua-compatible" content="ie=edge">
+<meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, shrink-to-fit=no" />
+<title>Moto X3M 3</title>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-MENBM6GSNY"><\/script><script>function gtag(){dataLayer.push(arguments)}window.dataLayer=window.dataLayer||[],gtag("js",new Date),gtag("config","G-MENBM6GSNY")<\/script>
+<link rel="stylesheet" href="https://486017395-735910036185936427.preview.editmysite.com/uploads/b/139890129-378637188943279878/files/assets/css/app.css" type="text/css" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+</head>
+<body>
+
+
+<div id="content"></div>
+<div id="orientation"></div>
+<div id="loader">Loading ...</div>
+<script type="text/javascript" src="https://486017395-735910036185936427.preview.editmysite.com/uploads/b/139890129-378637188943279878/files/assets/box2dweb/nape.min.js">
+        var nape ="https://486017395-735910036185936427.preview.editmysite.com/uploads/b/139890129-378637188943279878/files/assets/box2dweb/nape.min.js";
+    <\/script>
+<script type="text/javascript" src="https://486017395-735910036185936427.preview.editmysite.com/uploads/b/139890129-378637188943279878/files/assets/box2dweb/nape-debug-draw.min.js"><\/script>
+<script type="text/javascript" src="https://486017395-735910036185936427.preview.editmysite.com/uploads/b/139890129-378637188943279878/files/assets/box2dweb/jquery-3.1.1.min.js"><\/script>
+<script type="text/javascript" src="https://486017395-735910036185936427.preview.editmysite.com/uploads/b/139890129-378637188943279878/files/assets/box2dweb/easeljs-0.8.2.combined.js"><\/script>
+<script type="text/javascript" src="https://486017395-735910036185936427.preview.editmysite.com/uploads/b/139890129-378637188943279878/files/assets/box2dweb/bluebird.min.js"><\/script>
+<script type="text/javascript" src="https://486017395-735910036185936427.preview.editmysite.com/uploads/b/139890129-378637188943279878/files/motox3m3.min.js"><\/script>
+</body>
+</html>
+
+
+    `.trim();
+
+    // Butona olay dinleyicisi ekle
+    document.addEventListener('DOMContentLoaded', function() {
+      const playButton = document.getElementById('playButton');
+      const fullscreenButton = document.getElementById('fullscreenButton');
+
+      if (playButton) {
+        playButton.addEventListener('click', showContent);
+      } else {
+        console.error('Play butonu bulunamadı.');
+      }
+
+      if (fullscreenButton) {
+        fullscreenButton.addEventListener('click', openFullscreen);
+      } else {
+        console.error('Fullscreen butonu bulunamadı.');
+      }
+    });
+
+    function showContent() {
+      try {
+        // Sadece play butonunu gizle
+        document.getElementById('playButton').style.display = 'none';
+
+        // İçerik konteynırını göster
+        const container = document.getElementById('contentContainer');
+        container.style.display = 'block';
+
+        // Blob oluştur
+        const blob = new Blob([gameHTML], { type: 'text/html' });
+        const blobUrl = URL.createObjectURL(blob);
+
+        // Mevcut iframe varsa temizle
+        while (container.firstChild) {
+          container.removeChild(container.firstChild);
+        }
+
+        // Yeni iframe oluştur
+        const iframe = document.createElement('iframe');
+        iframe.src = blobUrl;
+        iframe.style.width = '100%';
+        iframe.style.height = '100%';
+        iframe.style.border = 'none';
+        iframe.style.margin = '0';
+        iframe.style.padding = '0';
+
+        // Iframe'i ekle
+        container.appendChild(iframe);
+
+        // Hata ayıklama
+        iframe.onload = () => console.log('Oyun yüklendi');
+        iframe.onerror = (e) => console.error('Oyun yüklenirken hata:', e);
+      } catch (error) {
+        console.error('Hata oluştu:', error);
+        alert('The game could not be loaded. Check the browser console. If on mobile, contact me or try again.');
+      }
+    }
+
+    function openFullscreen() {
+      try {
+        // Yeni sekme aç
+        const newWin = window.open("about:blank", "_blank");
+        if (newWin) {
+          newWin.document.open();
+          newWin.document.write(gameHTML);
+          newWin.document.close();
+
+          // Tam ekran modunu ayarla (isteğe bağlı, tarayıcıya bağlı olarak çalışmayabilir)
+          setTimeout(() => {
+            if (newWin.document.documentElement.requestFullscreen) {
+              newWin.document.documentElement.requestFullscreen();
+            } else if (newWin.document.documentElement.mozRequestFullScreen) {
+              newWin.document.documentElement.mozRequestFullScreen();
+            } else if (newWin.document.documentElement.webkitRequestFullscreen) {
+              newWin.document.documentElement.webkitRequestFullscreen();
+            } else if (newWin.document.documentElement.msRequestFullscreen) {
+              newWin.document.documentElement.msRequestFullscreen();
+            }
+          }, 500);
+        } else {
+          alert("Yeni sekme açma engellendi. Lütfen tarayıcı ayarlarını kontrol edin.");
+        }
+      } catch (error) {
+        console.error('Fullscreen hata:', error);
+        alert('Tam ekran modu çalışmadı. Tarayıcı konsolunu kontrol edin.');
+      }
+    }
+  </script>
+
+</body></html>

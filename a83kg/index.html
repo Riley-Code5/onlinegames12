@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sparx Learning</title>
+  <link rel="manifest" href="manifest.json" />
+  <!-- ios support -->
+  <link rel="apple-touch-icon" href="images/favicon.ico" />
+  <meta name="apple-mobile-web-app-status-bar" content="#db4938" />
+  <meta name="theme-color" content="#db4938" />
+  <link rel="icon" href="images/favicon.ico" />
+    <style>
+        p{
+            font-size: 10px;
+        }
+        a{
+            text-decoration: none;
+        }
+        body {
+            font-family: sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            background-color: #f8f8f8; /* Light grey background */
+        }
+
+        .container {
+            width: 100%; /* Adjust as needed */
+            max-width: 100%; /* Adjust as needed */
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            height: 100vh; /* Take up the entire screen height */
+        }
+
+        .header {
+            background-color: white;
+            padding: 20px;
+            border-bottom: 1px solid #ddd;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .header nav {
+            display: flex;
+        }
+
+        .header nav a {
+            text-decoration: none;
+            color: #333;
+            margin: 0 15px;
+        }
+
+        .content {
+            flex-grow: 1;
+            overflow-y: scroll;
+        }
+
+        .content h1 {
+            font-size: 2em;
+            color: #333;
+        }
+
+        .footer {
+            background-color: white;
+            padding: 20px;
+            border-top: 1px solid #ddd;
+            text-align: center;
+            font-size: 0.8em;
+            color: #666;
+        }
+
+        .footer a {
+            color: #666;
+            text-decoration: none;
+            margin: 0 10px;
+        }
+        .applications {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 20px;
+        }
+        .sparx-math-infobox {
+            background-color: #1296f9;
+            border-radius: 12px;
+            width: 20%;
+            padding: 12px;
+            padding-top: 30px;
+            margin-left: 60px;
+            height: 190px;
+        }
+        .sparx-reader-infobox {
+            background-color: #453EB1;
+            border-radius: 12px;
+            width: 20%;
+            padding: 12px;
+            height: 190px;
+        }
+        .sparx-science-infobox {
+            background-color: #119887;
+            border-radius: 12px;
+            width: 20%;
+            padding: 12px;
+            margin-right: 60px;
+            height: 190px;
+        }
+        .sparx-text {
+            color: white;
+            font-family: 'Poppins';
+            background-color: transparent
+        }
+        .sparx-button-math {
+            background-color: white;
+            color: #1296f9;
+            border: none;
+            padding: 5px 10px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 8px;
+            margin: 2px 1px;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+        .sparx-button-reader {
+            background-color: white;
+            color: #453EB1;
+            border: none;
+            padding: 5px 10px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 8px;
+            margin: 2px 1px;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+        .sparx-button-science {
+            background-color: white;
+            color: #119887;
+            border: none;
+            padding: 5px 10px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 8px;
+            margin: 2px 1px;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+        .sparx-img {
+            background-color: transparent;
+        }
+    </style><style>
+    * {
+      background-color: #ECEFF1;
+    }
+    .div {
+        display: inline-block;
+    }
+    #game {
+      margin: 20px;
+    }
+  </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <svg xmlns="http://www.w3.org/2000/svg" id="Layer_2" data-name="Layer 2" viewBox="0 0 206.64 100.2" alt="Sparx Learning" style="width: 150px; height: auto;">
+                <defs>
+                    <radialGradient id="radial-gradient" cx="175.05" cy="-6.58" r="65.66" fx="175.05" fy="-6.58" gradientUnits="userSpaceOnUse">
+                        <stop offset="0" stop-color="#71ffcc"/>
+                        <stop offset="0.07" stop-color="#73f7cf"/>
+                        <stop offset="0.18" stop-color="#79e4d7"/>
+                        <stop offset="0.31" stop-color="#83c3e5"/>
+                        <stop offset="0.45" stop-color="#9097f9"/>
+                        <stop offset="0.49" stop-color="#958aff"/>
+                        <stop offset="0.5" stop-color="#9689fd"/>
+                        <stop offset="0.67" stop-color="#c279c5"/>
+                        <stop offset="0.81" stop-color="#e36d9c"/>
+                        <stop offset="0.93" stop-color="#f76683"/>
+                        <stop offset="1" stop-color="#ff647a"/>
+                    </radialGradient>
+                    <style>.cls-2{stroke-width:0;fill:#1d084a}</style>
+                </defs>
+                <g id="Layer_1-2" data-name="Layer 1">
+                    <path d="m206.64 15.64-2.68-6.48-11.01 4.54 4.57-11-6.48-2.69-4.57 11L181.92 0l-6.48 2.68 4.54 11.01-11-4.57-2.69 6.48 11 4.57-11.01 4.54 2.68 6.49 11.01-4.55-4.57 11 6.48 2.69 4.57-11 4.54 11.01 6.49-2.67-4.55-11.01 11 4.57 2.7-6.48-11.01-4.57z" style="fill:url(#radial-gradient);stroke-width:0"/>
+                    <path d="M21.57 27.56c-1.4-.85-2.92-1.53-4.56-2.03-1.65-.5-3.17-.99-4.57-1.45-1.39-.47-2.56-.99-3.49-1.57s-1.39-1.41-1.39-2.5c0-1.01.48-1.94 1.45-2.79s2.32-1.28 4.07-1.28 3.1.47 4.07 1.4 1.45 2.21 1.45 3.84h6.68q0-2.505-.87-4.62c-.58-1.41-1.41-2.65-2.5-3.69-1.09-1.05-2.38-1.86-3.87-2.44s-3.15-.87-4.97-.87c-1.98 0-3.75.29-5.32.87s-2.91 1.35-4.01 2.3-1.96 2.06-2.56 3.34a9.35 9.35 0 0 0-.9 4.01c0 2.13.47 3.85 1.4 5.15s2.09 2.35 3.49 3.16q2.085 1.23 4.56 1.92c1.65.46 3.17.94 4.56 1.43 1.4.48 2.56 1.04 3.49 1.66s1.4 1.49 1.4 2.62-.51 2.18-1.51 3.05c-1.01.87-2.54 1.31-4.59 1.31-1.9 0-3.39-.51-4.48-1.54-1.08-1.03-1.63-2.36-1.63-3.98H0c0 1.74.3 3.34.9 4.79s1.46 2.71 2.59 3.78c1.12 1.07 2.49 1.89 4.1 2.47 1.61.59 3.44.88 5.49.88s3.85-.3 5.49-.9c1.65-.6 3.05-1.39 4.22-2.38 1.16-.99 2.06-2.1 2.7-3.34q.96-1.86.96-3.84c0-2.21-.46-4-1.39-5.38-.93-1.37-2.09-2.49-3.49-3.34ZM52.52 23.29a12.3 12.3 0 0 0-3.98-2.85q-2.265-1.02-4.77-1.02c-1.16 0-2.21.15-3.14.46s-1.72.64-2.38.99c-.77.42-1.45.91-2.03 1.45v-2.61h-6.1v36.04h6.68V44.12c.54.51 1.16.95 1.86 1.34.62.31 1.35.6 2.18.87s1.81.41 2.94.41c1.66 0 3.26-.34 4.77-1.02s2.84-1.63 3.98-2.85 2.05-2.66 2.73-4.33c.68-1.66 1.02-3.49 1.02-5.46s-.34-3.8-1.02-5.47c-.68-1.66-1.59-3.11-2.73-4.33Zm-4.85 15.09q-1.92 1.98-4.77 1.98c-2.85 0-3.49-.66-4.77-1.98s-1.92-3.08-1.92-5.29.64-3.97 1.92-5.29q1.92-1.98 4.77-1.98c2.85 0 3.49.66 4.77 1.98s1.92 3.08 1.92 5.29-.64 3.97-1.92 5.29M78.01 19.72v2.61c-.62-.54-1.3-1.03-2.03-1.45-.66-.35-1.45-.68-2.38-.99s-1.98-.46-3.14-.46q-2.505 0-4.77 1.02c-1.51.68-2.84 1.63-3.98 2.85-1.15 1.22-2.06 2.67-2.73 4.33-.68 1.66-1.02 3.49-1.02 5.47s.34 3.8 1.02 5.46c.68 1.67 1.59 3.11 2.73 4.33s2.47 2.17 3.98 2.85q2.265 1.02 4.77 1.02c1.16 0 2.21-.15 3.14-.44s1.72-.63 2.38-1.02c.73-.42 1.41-.91 2.03-1.45v2.62h6.1V19.73h-6.1Zm-1.92 18.65q-1.92 1.98-4.77 1.98c-2.85 0-3.49-.66-4.77-1.98s-1.92-3.08-1.92-5.29.64-3.97 1.92-5.29q1.92-1.98 4.77-1.98c2.85 0 3.49.66 4.77 1.98s1.92 3.08 1.92 5.29-.64 3.97-1.92 5.29M102.08 19.48q-.345-.06-.81-.06c-1.01 0-1.91.16-2.71.49-.79.33-1.46.71-2 1.13-.66.47-1.22.99-1.69 1.57v-2.9h-6.1000000000000005v26.74h6.68V32.2c0-1.74.51-3.15 1.54-4.21 1.02-1.06 2.35-1.6 3.98-1.6q.525 0 .96.06c.29.04.53.08.73.11.23.04.44.08.64.12v-6.97c-.2-.04-.39-.08-.58-.12-.2-.04-.41-.08-.64-.12ZM129.28 19.72h-7.26l-5.24 8.42-5.23-8.42h-7.26l8.42 13.08-9 13.66h7.26l5.81-9.01 5.82 9.01h7.26l-9.01-13.66zM24.13 83.63v6.69H0V53.69h6.98v29.94zM50.04 82.18c-.35 1.01-.88 2.02-1.6 3.02-.72 1.01-1.59 1.91-2.62 2.7a14.2 14.2 0 0 1-3.49 1.95c-1.3.5-2.7.76-4.22.76-1.82 0-3.54-.36-5.15-1.08s-3.02-1.7-4.24-2.94a14.2 14.2 0 0 1-2.91-4.33c-.72-1.65-1.08-3.42-1.08-5.32s.36-3.67 1.08-5.32 1.69-3.09 2.91-4.33 2.64-2.22 4.24-2.94c1.61-.72 3.32-1.08 5.15-1.08s3.39.33 4.94.99 2.91 1.59 4.07 2.79 2.08 2.65 2.76 4.33q1.02 2.535 1.02 5.55 0 .465-.06.9t-.12.84q-.06.465-.12.87H31.99a6.2 6.2 0 0 0 1.98 3.31c1.01.89 2.38 1.34 4.13 1.34.89 0 1.64-.1 2.24-.29s1.11-.43 1.54-.7c.47-.31.85-.66 1.16-1.05h6.98Zm-11.92-12.5c-1.74 0-3.17.5-4.27 1.51a6.86 6.86 0 0 0-2.12 3.72h12.79a6.86 6.86 0 0 0-2.12-3.72c-1.1-1.01-2.53-1.51-4.27-1.51ZM65.09 90.61q-2.505 0-4.77-1.02c-1.51-.68-2.84-1.63-3.98-2.85a13.8 13.8 0 0 1-2.73-4.33c-.68-1.67-1.02-3.49-1.02-5.47s.34-3.8 1.02-5.47 1.59-3.11 2.73-4.33 2.47-2.17 3.98-2.85q2.265-1.02 4.77-1.02c1.16 0 2.21.16 3.14.47s1.72.64 2.38.99c.74.43 1.41.91 2.03 1.45l1.16-2.62h4.94v26.75H73.8l-1.16-2.62c-.62.54-1.3 1.03-2.03 1.45-.66.39-1.45.73-2.38 1.02s-1.98.44-3.14.44Zm7.56-13.66c0-2.21-.64-3.97-1.92-5.29q-1.92-1.98-4.77-1.98c-2.85 0-3.49.66-4.77 1.98s-1.92 3.08-1.92 5.29.64 3.97 1.92 5.29q1.92 1.98 4.77 1.98c2.85 0 3.49-.66 4.77-1.98s1.92-3.08 1.92-5.29M95.91 63.28q.465 0 .81.06c.23.04.45.08.64.12l.58.12v6.98c-.19-.04-.41-.08-.64-.12-.19-.04-.44-.08-.73-.12q-.435-.06-.96-.06c-1.63 0-2.96.53-3.98 1.6-1.03 1.07-1.54 2.47-1.54 4.22v14.25H83.4V63.58h4.94l1.16 2.91c.47-.58 1.03-1.1 1.69-1.57.54-.43 1.21-.8 2.01-1.13.79-.33 1.7-.49 2.7-.49ZM114 63.28c1.59 0 3.04.26 4.36.78s2.45 1.28 3.4 2.27 1.69 2.18 2.21 3.58q.78 2.1.78 4.71v15.7h-6.69V75.49c0-1.74-.51-3.15-1.54-4.22s-2.35-1.6-3.98-1.6-2.96.53-3.98 1.6c-1.03 1.07-1.54 2.47-1.54 4.22v14.83h-6.69V63.57h4.94l1.16 2.62c.66-.54 1.38-1.03 2.15-1.45.66-.35 1.44-.68 2.35-.99s1.93-.47 3.05-.47ZM132.93 60.08c-1.01 0-1.89-.38-2.65-1.13-.76-.76-1.13-1.64-1.13-2.65s.38-1.89 1.13-2.65c.76-.76 1.64-1.13 2.65-1.13s1.89.38 2.65 1.13c.76.76 1.13 1.64 1.13 2.65s-.38 1.89-1.13 2.65c-.76.76-1.64 1.13-2.65 1.13m3.2 30.23h-6.69V63.56h6.69zM154.44 63.28c1.59 0 3.04.26 4.36.78s2.45 1.28 3.4 2.27 1.69 2.18 2.21 3.58q.78 2.1.78 4.71v15.7h-6.69V75.49c0-1.74-.51-3.15-1.54-4.22s-2.35-1.6-3.98-1.6-2.96.53-3.98 1.6c-1.03 1.07-1.54 2.47-1.54 4.22v14.83h-6.69V63.57h4.94l1.16 2.62c.66-.54 1.38-1.03 2.15-1.45.66-.35 1.44-.68 2.35-.99s1.93-.47 3.05-.47ZM179.21 63.28c1.16 0 2.21.16 3.14.47s1.72.64 2.38.99c.74.43 1.41.91 2.04 1.45l1.16-2.62h4.94v25c0 3.49-1.11 6.3-3.34 8.43s-5.38 3.2-9.45 3.2c-2.48 0-4.49-.45-6.02-1.34s-2.74-1.9-3.63-3.02c-1.01-1.28-1.76-2.73-2.27-4.36h6.69c.27.5.64.95 1.1 1.34.43.31.97.6 1.63.87s1.49.41 2.5.41c1.9 0 3.39-.51 4.48-1.54 1.08-1.03 1.63-2.35 1.63-3.98v-2.04a9.6 9.6 0 0 1-1.86 1.45c-.62.39-1.36.73-2.21 1.02s-1.82.44-2.91.44q-2.505 0-4.74-.99t-3.9-2.73c-1.1-1.16-1.98-2.54-2.62-4.13s-.96-3.33-.96-5.23.32-3.64.96-5.23 1.51-2.97 2.62-4.13q1.65-1.74 3.9-2.73 2.235-.99 4.74-.99Zm-5.52 13.08c0 .93.16 1.8.49 2.62.33.81.78 1.52 1.37 2.12.58.6 1.26 1.08 2.04 1.42.77.35 1.61.52 2.5.52s1.67-.17 2.44-.52c.78-.35 1.45-.82 2.04-1.42a7 7 0 0 0 1.4-2.12c.35-.81.52-1.69.52-2.62s-.17-1.8-.52-2.62-.81-1.52-1.4-2.12c-.58-.6-1.26-1.08-2.04-1.42-.78-.35-1.59-.52-2.44-.52s-1.73.17-2.5.52c-.78.35-1.45.82-2.04 1.42-.58.6-1.04 1.31-1.37 2.12s-.49 1.69-.49 2.62" class="cls-2"/>
+                </g>
+            </svg>
+            <nav>
+                <a href="#">Home</a>
+                <a href="#">Reader</a>
+                <a href="#">Maths</a>
+                <a href="#">Science</a>
+                <a href="#">Work with us</a>
+                <a href="#">Contact us</a>
+            </nav>
+        </div>
+        <div class="content">
+            <div class="welcome-header">
+                <p>WHY WE EXIST</p>
+                <h5>To improve lives and the world through learning.</h5>
+            </div>
+            <div class="applications">
+                <div class="sparx-math-infobox">
+                    <img src="./images/sparx-cover/sparx-maths.png" alt="Sparx Maths" width="100" class="sparx-img">
+                    <h3 class="sparx-text">Sparx Maths</h3>
+                    <p class="sparx-text">Building maths confidence through personalised homework.</p>
+                    <a href="https://www.sparxmaths.com/" class="sparx-button-math">Visit Sparx Maths</a>
+                </div>
+                <div class="sparx-reader-infobox">
+                    <img src="./images/sparx-cover/sparx-reader.png" alt="Sparx Reader" width="100" class="sparx-img">
+                    <h3 class="sparx-text">Sparx Reader</h3>
+                    <p class="sparx-text">Building confident readers through regular reading practice.</p>
+                    <a href="https://www.sparxreader.com/" class="sparx-button-reader">Visit Sparx Reader</a>
+                </div>
+                <div class="sparx-science-infobox">
+                    <img src="./images/sparx-cover/sparx-science.png" alt="Sparx Science" width="100" class="sparx-img">
+                    <h3 class="sparx-text">Sparx Science</h3>
+                    <p class="sparx-text">Improving scientific knowledge through thoughtful practice.</p>
+                    <a href="https://www.sparxscience.com/" class="sparx-button-math">Visit Sparx Science</a>
+                </div>
+            </div>
+            <div class="statistics"></div>
+        </div>
+        <div class="footer">
+            <p>&copy; Copyright 2025 Sparx Ltd - All rights reserved</p>
+            <p>
+                <a href="#">Terms of Use</a>
+                <a href="#">Privacy Notice</a>
+                <a href="#">Support Companies</a>
+                <a href="#">Website Terms and Conditions</a>
+                <a href="#">Website Privacy Policy</a>
+            </p>
+            <p>Contact us: <a href="mailto:contact@sparx.co.uk">contact@sparx.co.uk</a></p>
+        </div>
+    </div>
+  <body>
+    <h1>onlinegames12</h1>
+    <h3>NOTICE</h3>
+    <p>The 2 onlinegames12 sites do NOT save progress with each other. It recommended to stick to one or to not even bother with longer games which heavily on saves.</p>
+      <a href="https://forms.gle/XQwzr8A6XcxKP6CE7">Want another game?</a><br>
+      <div class="panicEscapes">
+          <h2>School Apps Panic</h2>
+          <a href="msteams://">Open MS Teams (App)</a><br>
+          <a href="https://teams.microsoft.com">Open MS Teams (Web)</a>
+      </div>
+    <div id="gameRow1" class="div">
+      <div id="game" class="div">
+        <a href="../tiny-fishing/tiny-fishing/index.html">
+        <img src="./images/icons/tinyFishing.jpeg" alt="Icon Image" height=90 width=135>
+        <p>Tiny Fishing [OLD]</p>
+        </a>
+      </div>
+        <div id="game" class="div">
+            <a href="../ragdoll-archer/index.html">
+            <img src="./images/icons/ragdollArchers.jpg" alt="Icon Image" height=90 width=135>
+            <p>Ragdoll Archers</p>
+            </a>
+          </div>
+
+          <div id="game" class="div">
+              <a href="../moto-x3m-2/index.html">
+              <img src="./images/icons/motox3m2.jpg" alt="Icon Image" height=90 width=135>
+              <p>Moto X3M 2</p>
+              </a>
+            </div>
+    </div>
+      <div id="gameRow2" class="div">
+        <div id="game" class="div">
+            <a href="../snake/index.html">
+            <img src="./images/icons/snake.jpeg" alt="Icon Image" height=90 width=135>
+            <p>Snake</p>
+            </a>
+        </div>  
+        <div id="game" class="div">
+            <a href="../bitlife/index.html">
+            <img src="./images/icons/bitlife.jpeg" alt="Icon Image" height=90 width=135>
+            <p>Bitlife</p>
+            </a>
+        </div>
+        <div id="game" class="div">
+            <a href="./soccerrandom/index.html">
+            <img src="./images/icons/soccerRandom.jpeg" alt="Icon Image" height=90 width=135>
+            <p>Soccer Random</p>
+            </a>
+        </div>
+      </div>
+      <div id="gameRow3" class="div">
+                <div id="game" class="div">
+            <a href="./boxingrandom/index.html">
+            <img src="./images/icons/boxingRandom.jpeg" alt="Icon Image" height=90 width=135>
+            <p>Boxing Random</p>
+            </a>
+                </div>
+                <div id="game" class="div">
+            <a href="./volleyrandom/index.html">
+            <img src="./images/icons/volleyRandom.jpeg" alt="Icon Image" height=90 width=135>
+            <p>Volley Random</p>
+            </a>
+                </div><div id="game" class="div">
+            <a href="./scratch/index.html">
+            <img src="./images/icons/scratch.jpeg" alt="Icon Image" height=90 width=135>
+            <p>Scratch Games</p>
+            </a>
+                </div>
+    </div>
+      <div id="gameRow4" class="div">
+          <div id="game" class="div">
+              <a href="./paperio2/index.html">
+              <img src="./images/icons/paperio2.jpeg" alt="Icon Image" height=90 width=135>
+              <p>Paper.io 2</p>
+              </a>
+                  </div> <div id="game" class="div">
+                <a href="./thereisnogame/index.html">
+                <img src="./images/icons/thereIsNoGame.jpeg" alt="Icon Image" height=90 width=135>
+                <p>There is no game</p>
+                </a>
+                    </div> <div id="game" class="div">
+                <a href="./worldshardestgame/index.html">
+                <img src="./images/icons/worldsHardestGame.png" alt="Icon Image" height=90 width=135>
+                <p>World's Hardest Game</p>
+                </a>
+                    </div>
+      </div>
+      <div id="gameRow5" class="div">
+          <div id="game" class="div">
+              <a href="../block-blast/index.html">
+              <img src="./images/icons/blockBlast.jpg" alt="Icon Image" height=90 width=135>
+              <p>Block Blast [G+ VERSION]</p>
+              </a>
+          </div>
+          <div id="game" class="div">
+                <a href="../duck-clicker/index.html">
+                <img src="./images/icons/duckDuckClicker.jpg" alt="Icon Image" height=90 width=135>
+                <p>Duck Duck Clicker - [G+]</p>
+                </a>
+            </div>          
+          <div id="game" class="div">
+              <a href="../moto-x3m-3/index.html">
+              <img src="./images/icons/motox3m3.jpeg" alt="Icon Image" height=90 width=135>
+              <p>Moto X3M 3 - [G+]</p>
+              </a>
+          </div>
+      </div>
+        <div id="gameRow6" class="div">
+              <div id="game" class="div">
+                <a href="https://open.spotify.com/">
+                <img src="https://open.spotify.com/favicon.ico" alt="Icon Image" height=90 width=135>
+                <p>Spotfiy Web</p>
+                </a>
+              </div>
+              <div id="game" class="div">
+                <a href="./basketrandom/index.html">
+                <img src="./images/icons/basketRandom.jpeg" alt="Icon Image" height=90 width=135>
+                <p>Basket Random</p>
+                </a>
+              </div>
+            <div id="game" class="div">
+              <a href="./pacman/index.html">
+              <img src="./images/icons/pacman.jpeg" alt="Icon Image" height=90 width=135>
+              <p>Pacman</p>
+              </a>
+            </div>
+
+        </div>
+        <div id="gameRow7" class="div">
+              <div id="game" class="div">
+                <a href="./geometrydash/index.html">
+                <img src="./images/icons/geometryDash.jpeg" alt="Icon Image" height=90 width=135>
+                <p>Geometry Dash [SCRATCH]</p>
+                </a>
+              </div>
+                <div id="game" class="div">
+              <a href="./webgl-fluid-simulation/index.html">
+              <img src="./images/icons/fluidSimGithub.jpg" alt="Icon Image" height=90 width=135>
+              <p>WebGL Fluid Simulation [NEW!]</p>
+              </a>
+                </div>
+                <div id="game" class="div">
+              <a href="./ovo/index.html">
+              <img src="./images/icons/ovo.png" alt="Icon Image" height=90 width=135>
+              <p>OvO [NEW!]</p>
+              </a>
+                </div>
+        </div>
+      <h1>TINY FISHING UPDATE TRACKER</h1>
+      <img src="./images/tinyfishingproj/researching.png" width=405>
+      <div id="tinyFishing" class="div">
+          No version is ready for testing.
+      </div>
+      <h1>Deprecated Games</h1>
+        <div id="deprecatedGameRow1" class="div">
+            <div id="game" class="div">
+                <a href="./Block-Blast-Old/index.html">
+                <img src="./images/icons/blockBlast.jpg" alt="Icon Image" height=90 width=135>
+                <p>Block Blast [DEPRECATED]</p>
+                </a>
+            </div>
+        </div>
+      <h1>PC Games</h1>
+        <div id="pcGameRow1" class="div">
+            <div id="game" class="div">
+                  <a href="./tetris/index.html">
+                  <img src="./images/icons/tetris.png" alt="Icon Image" height=90 width=135>
+                  <p>Tetris [PC]</p>
+                  </a>
+                </div>
+                <div id="game" class="div">
+                  <a href="./spaceinvaders/index.html">
+                  <img src="./images/icons/spaceInvaders.png" alt="Icon Image" height=90 width=135>
+                  <p>Space Invaders [PC]</p>
+                  </a>
+                </div>
+        </div>
+
+
+
+      <video controls height=150>
+        <source src="./announcements/26-4-25.mp4" type="video/mp4">
+        Unable to display announcement.
+      </video> 
+  </body>
+<script src="https://onlinegames121.statuspage.io/embed/script.js"></script>
+<script src="/js/auth.js"></script>
+</html>

@@ -1,0 +1,14 @@
+{
+  "short_name": "Sparx Learning",
+  "name": "Sparx Learning - Motivating Students To Learn",
+  "icons": [
+    {
+      "src": "/images/favicon.ico",
+      "type": "image/ico"
+    }
+  ],
+  "start_url": "./index.html",
+  "display": "standalone",
+  "theme_color": "#f8f8f8",
+  "background_color": "#f8f8f8"
+}
