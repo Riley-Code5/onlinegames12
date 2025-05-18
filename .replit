@@ -30,4 +30,13 @@ localPort = 9005
 externalPort = 80
 
 [workflows]
-runButton = "Deploy (Main)"
+runButton = "Test"
+
+[[workflows.workflow]]
+name = "Test"
+mode = "sequential"
+author = 38722240
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "http-server"
